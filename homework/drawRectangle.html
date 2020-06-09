@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const c = canvas.getContext('2d');
+
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+
+    addEventListener("resize", function () {
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      border.resize();
+      border.draw();
+    });
+
+
+    class BorderWall {
+        resize() {
+          this.x = canvas.width*0.05;
+          this.y = canvas.height*0.05;
+          this.width = canvas.width*0.9;
+          this.height = canvas.height*0.9;
+          this.strokeWidth = 5; //Tham số hoá
+        }
+        constructor() {
+          this.resize();
+        }
+    
+        draw() {
+          c.lineWidth = this.strokeWidth;
+          c.strokeStyle = "black";
+          c.beginPath();
+          c.rect(this.x, this.y, this.width, this.height);
+          c.stroke();
+          c.closePath();
+
+          c.beginPath();
+          c.strokeStyle = "green";
+          c.moveTo(this.x, this.y);
+            c.lineTo(this.x + this.width, this.y + this.height);
+            c.moveTo(this.x + this.width, this.y);
+            c.lineTo(this.x, this.y + this.height);
+          c.stroke();
+          c.closePath();
+        }
+    
+      }
+    let border = new BorderWall ();
+    border.draw();
+
+
+  </script>
+</body>
+
+</html>

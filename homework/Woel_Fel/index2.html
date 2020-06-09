@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style2.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="banner">
+            <div class="banner_left">
+                <span class="left_icon" "><i class="fa fa-rocket" id="rocket_icon" aria-hidden="true"></i></span>
+                <span class="text_Teammember">Team Members</span>
+            </div>
+            <span class="banner_right">
+                <button class="btn_all" style="border-radius:100px; background-color:aqua;">
+                    <span class="MT">All</span>
+                </button>
+                    <button class="btn_MT"><span class="text_MT">My Team</span></button>
+            </span>
+        </div>
+        <div class="card_list">
+            <div class="card">
+                <div class="card_icon">
+                    <span><i class="fa fa-heart" aria-hidden="true"></i></span>
+                </div>
+                <div class="card_thumbnail">
+                    <img src="data:image/jpeg;base64,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"
+                        alt="">
+                </div>
+                <div class="card_infor">
+                    <span class="name">Bui hien</span>
+                    <span class="email">nearha@gmail.com</span>
+                </div>
+                <div class="card_btn">
+                    <button class="btn_icon">
+                        <span><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+                        <span class="btn_name">Assign</span>
+                    </button>
+                    <button class="btn_icon">
+                        <span> <i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="btn_name">View</span>
+                    </button>
+                </div>
+        
+            </div>
+            <div class="card">
+                <div class="card_icon">
+                    <span><i class="fa fa-heart" aria-hidden="true"></i></span>
+                </div>
+                <div class="card_thumbnail">
+                    <img src="https://static2.yan.vn/YanNews/2167221/201909/nhan-sac-hoi-hotgirl-viet-noi-tieng-mxh-trung-quoc-22da3c9c.jpg"
+                        alt="">
+                </div>
+                <div class="card_infor">
+                    <span class="name">China</span>
+                    <span class="email">hunghang@gmail.com</span>
+                </div>
+                <div class="card_btn">
+                    <button class="btn_icon">
+                        <span><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+                        <span class="btn_name">Assign</span>
+                    </button>
+                    <button class="btn_icon">
+                        <span> <i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="btn_name">View</span>
+                    </button>
+                </div>
+        
+            </div>
+            <div class="card">
+                <div class="card_icon">
+                    <span><i class="fa fa-heart" aria-hidden="true"></i></span>
+                </div>
+                <div class="card_thumbnail">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTJhiJDDjD0RCet_t3a7fPbw1lpV5LdQtgUJGXpBcG-z2k-AHld&usqp=CAU"
+                        alt="">
+                </div>
+                <div class="card_infor">
+                    <span class="name">NgocHa</span>
+                    <span class="email">NgocHa@gmail.com</span>
+                </div>
+                <div class="card_btn">
+                    <button class="btn_icon">
+                        <span><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+                        <span class="btn_name">Assign</span>
+                    </button>
+                    <button class="btn_icon">
+                        <span> <i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="btn_name">View</span>
+                    </button>
+                </div>
+        
+            </div>
+            <div class="card">
+                <div class="card_icon">
+                    <span><i class="fa fa-heart" aria-hidden="true"></i></span>
+                </div>
+                <div class="card_thumbnail">
+                    <img src="data:image/jpeg;base64,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"
+                        alt="">
+                </div>
+                <div class="card_infor">
+                    <span class="name">Ngoc Tu</span>
+                    <span class="email">ngoctu@gmail.com</span>
+                </div>
+                <div class="card_btn">
+                    <button class="btn_icon">
+                        <span><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+                        <span class="btn_name">Assign</span>
+                    </button>
+                    <button class="btn_icon">
+                        <span> <i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="btn_name">View</span>
+                    </button>
+                </div>
+        
+            </div>
+            <div class="card">
+                <div class="card_icon">
+                    <span><i class="fa fa-heart" aria-hidden="true"></i></span>
+                </div>
+                <div class="card_thumbnail">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTsvkCnh01SKh8wJelJ15f2EQl9i10CfWnKc_vv1z2lAbuNw6Ca&usqp=CAU"
+                        alt="">
+                </div>
+                <div class="card_infor">
+                    <span class="name">ngocmai</span>
+                    <span class="email">ngocmai@gmail.com</span>
+                </div>
+                <div class="card_btn">
+                    <button class="btn_icon">
+                        <span><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+                        <span class="btn_name">Assign</span>
+                    </button>
+                    <button class="btn_icon">
+                        <span> <i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="btn_name">View</span>
+                    </button>
+                </div>
+        
+            </div>
+            <div class="card">
+                <div class="card_icon">
+                    <span><i class="fa fa-heart" aria-hidden="true"></i></span>
+                </div>
+                <div class="card_thumbnail">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSFrUUvkCC4AWo8EetKmA2Fr_8S4EF1nHE3aPtVFeD3mLwgjzpO&usqp=CAU"
+                        alt="">
+                </div>
+                <div class="card_infor">
+                    <span class="name">huyenvu</span>
+                    <span class="email">huyenvu@gmail.com</span>
+                </div>
+                <div class="card_btn">
+                    <button class="btn_icon">
+                        <span><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+                        <span class="btn_name">Assign</span>
+                    </button>
+                    <button class="btn_icon">
+                        <span> <i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="btn_name">View</span>
+                    </button>
+                </div>
+        
+            </div>
+            <div class="card">
+                <div class="card_icon">
+                    <span><i class="fa fa-heart" aria-hidden="true"></i></span>
+                </div>
+                <div class="card_thumbnail">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQqW677syKGqhnByOzve-M6XSHbt_zJ3nMSsJUqmtVCVx5FpfIx&usqp=CAU"
+                        alt="">
+                </div>
+                <div class="card_infor">
+                    <span class="name">thanhthao</span>
+                    <span class="email">thanhthao@gmail.com</span>
+                </div>
+                <div class="card_btn">
+                    <button class="btn_icon">
+                        <span><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+                        <span class="btn_name">Assign</span>
+                    </button>
+                    <button class="btn_icon">
+                        <span> <i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="btn_name">View</span>
+                    </button>
+                </div>
+        
+            </div>
+            <div class="card">
+                <div class="card_icon">
+                    <span><i class="fa fa-heart" aria-hidden="true"></i></span>
+                </div>
+                <div class="card_thumbnail">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS3gSgcA3hYacjlJKkADMBCQ_dzgZZgpFFpjLU74fl8lUjNcPgd&usqp=CAU"
+                        alt="">
+                </div>
+                <div class="card_infor">
+                    <span class="name">huonggiang</span>
+                    <span class="email">huonggiang@gmail.com</span>
+                </div>
+                <div class="card_btn">
+                    <button class="btn_icon">
+                        <span><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+                        <span class="btn_name">Assign</span>
+                    </button>
+                    <button class="btn_icon">
+                        <span> <i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="btn_name">View</span>
+                    </button>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

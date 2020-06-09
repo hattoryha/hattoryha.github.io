@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    var c = document.getElementById("canvas");
+    var ctx = c.getContext("2d");
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    addEventListener("resize", function () {
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      init();
+    });
+    var N = 7;
+    function init(){
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      function drawSquare(width,angle,color) {
+        ctx.rotate(angle * Math.PI / 180);
+        ctx.fillStyle = color;
+        ctx.fillRect(-width/2, -width/2, width,width);
+      }
+      function drawCircle(radius, color) {
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.closePath();        
+      }
+      var radius = 600;
+      drawCircle(radius,rgb());
+      for (var i = 1; i < N; i++) {
+        if (i % 2 == 0) {
+          radius = width / 2;
+          drawCircle(radius, rgb());
+        }
+        else {
+          width = radius * Math.sqrt(2);
+          drawSquare(width,0,rgb());
+        }
+      }
+
+    }
+    init();
+    function rgb() {
+      color = 'rgb(';
+      for (var i = 0; i < 3; i++) {
+        color += Math.floor(Math.random() * 255) + ',';
+      }
+      return color.replace(/\,$/, ')');
+    }
+
+
+
+  </script>
+</body>
+
+</html>
