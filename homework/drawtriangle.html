@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    var c = document.getElementById("canvas");
+    var ctx = c.getContext("2d");
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+    addEventListener("resize", function () {
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      init();
+    });
+    class Point {
+      constructor (Name, x, y) {
+        this.Name = Name;
+        this.x = x;
+        this.y = y;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 5, 0, Math.PI * 2, false);
+        ctx.fillStyle = "Black";
+        ctx.fill();
+        ctx.stroke();
+        ctx.font = "30px Arial";
+        ctx.fillText(this.Name, this.x, this.y - 5);
+        ctx.closePath();
+      }
+    }
+    var pointA = new Point("A", canvas.width * 0.05, canvas.height * 0.05,);
+    var pointB = new Point("B", canvas.width * 0.9, canvas.height * 0.9);
+    var pointC = new Point("C", canvas.width * 0.07, canvas.height * 0.8);
+    pointA.draw();
+    pointB.draw();
+    pointC.draw();
+
+    class Triangle {
+      constructor (pointA, pointB, pointC) {
+        this.x1 = pointA.x;
+        this.x2 = pointB.x;
+        this.x3 = pointC.x;
+        this.y1 = pointA.y;
+        this.y2 = pointB.y;
+        this.y3 = pointC.y;
+      }
+      
+      draw_Triangle() {
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.strokeStyle = "black";
+        ctx.moveTo(this.x1, this.y1);
+        ctx.lineTo(this.x2, this.y2);
+        ctx.lineTo(this.x3, this.y3);
+        ctx.lineTo(this.x1, this.y1);
+        ctx.stroke();
+        ctx.closePath();
+      }
+      draw_Medians() {
+        ctx.lineWidth = 2;
+        ctx.setLineDash([4, 3])
+        ctx.beginPath();
+        ctx.strokeStyle = "green";
+        ctx.moveTo(this.x1, this.y1);
+        ctx.lineTo((this.x2 + this.x3) / 2, (this.y2 + this.y3) / 2);
+        ctx.moveTo(this.x3, this.y3);
+        ctx.lineTo((this.x2 + this.x1) / 2, (this.y2 + this.y1) / 2);
+        ctx.moveTo(this.x2, this.y2);
+        ctx.lineTo((this.x1 + this.x3) / 2, (this.y1 + this.y3) / 2);
+        ctx.stroke();
+        ctx.closePath();
+      }
+    }
+    var triangle = new Triangle (pointA, pointB, pointC);
+    function init() {
+      pointA.draw();
+      pointB.draw();
+      pointC.draw();
+      triangle.draw_Triangle();
+      triangle.draw_Medians();
+    }
+    init();
+  </script>
+</body>
+
+</html>
