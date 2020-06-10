@@ -16,7 +16,7 @@
 
     canvas.width = innerWidth;
     canvas.height = innerHeight;
-
+//hứng sự  kiện thay đổi màn hình để chọn lại kích thước cho canvas và border và vẽ border
     addEventListener("resize", function () {
       canvas.width = innerWidth;
       canvas.height = innerHeight;
@@ -24,7 +24,7 @@
       border.draw();
     });
 
-
+//tạo class cho border
     class BorderWall {
         resize() {
           this.x = canvas.width*0.05;
@@ -34,17 +34,18 @@
           this.strokeWidth = 5; //Tham số hoá
         }
         constructor() {
-          this.resize();
+          this.resize();// truyền kích thước vào class
         }
     
         draw() {
           c.lineWidth = this.strokeWidth;
           c.strokeStyle = "black";
+          //vẽ hình chữ nhật
           c.beginPath();
           c.rect(this.x, this.y, this.width, this.height);
           c.stroke();
           c.closePath();
-
+        //vẽ đường chéo
           c.beginPath();
           c.strokeStyle = "green";
           c.moveTo(this.x, this.y);
@@ -56,8 +57,8 @@
         }
     
       }
-    let border = new BorderWall ();
-    border.draw();
+    let border = new BorderWall ();//tạo phần tử border
+    border.draw(); //vẽ border ban đầu
 
 
   </script>

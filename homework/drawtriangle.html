@@ -15,17 +15,20 @@
     var ctx = c.getContext("2d");
     canvas.width = innerWidth;
     canvas.height = innerHeight;
+    //hứng sự kiện thay dổi màn hình để chạy hàm khởi tạo lại toàn bộ
     addEventListener("resize", function () {
       canvas.width = innerWidth;
       canvas.height = innerHeight;
       init();
     });
+    // tạo class cho điểm
     class Point {
       constructor (Name, x, y) {
         this.Name = Name;
         this.x = x;
         this.y = y;
       }
+      //vẽ điểm 
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, 5, 0, Math.PI * 2, false);
@@ -37,13 +40,15 @@
         ctx.closePath();
       }
     }
+    //khai báo các điểm và gán thuộc tính
     var pointA = new Point("A", canvas.width * 0.05, canvas.height * 0.05,);
     var pointB = new Point("B", canvas.width * 0.9, canvas.height * 0.9);
     var pointC = new Point("C", canvas.width * 0.07, canvas.height * 0.8);
+    //vẽ các điểm
     pointA.draw();
     pointB.draw();
     pointC.draw();
-
+    //tạo class cho hình tam giác
     class Triangle {
       constructor (pointA, pointB, pointC) {
         this.x1 = pointA.x;
@@ -53,7 +58,7 @@
         this.y2 = pointB.y;
         this.y3 = pointC.y;
       }
-      
+      //tạo function vẽ hình tam giác cho class
       draw_Triangle() {
         ctx.lineWidth = 2;
         ctx.beginPath();
@@ -65,9 +70,10 @@
         ctx.stroke();
         ctx.closePath();
       }
+      //tạo function vẽ các trung tuyến của hình tam giác cho class
       draw_Medians() {
         ctx.lineWidth = 2;
-        ctx.setLineDash([4, 3])
+        ctx.setLineDash([4, 3])// nét đứt
         ctx.beginPath();
         ctx.strokeStyle = "green";
         ctx.moveTo(this.x1, this.y1);
@@ -80,7 +86,9 @@
         ctx.closePath();
       }
     }
+    //khai báo hình tam giác và thuộc tính theo 3 điểm A, B, C
     var triangle = new Triangle (pointA, pointB, pointC);
+    //tạo hàm khởi tạo
     function init() {
       pointA.draw();
       pointB.draw();

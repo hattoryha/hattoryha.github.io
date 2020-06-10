@@ -59,12 +59,13 @@
         }
         let radius = 30;
         balls = [];
-        var count = 0;
+        var count = 0; //tạo count để đếm các lần bán trúng, bắt đầu từ 0
 
         addEventListener('click', (event) => {
             var x = randomIntFromRange(0, canvas.width);
             let ball = new Ball(radius, rgb(), x, canvas.height);
             balls.push(ball);
+            //duyệt qua tất cả mảng chứa bóng, mỗi lần kick trúng là loại phần tử đó ra khỏi mảng
             let i = balls.length;
             while (i--) {
               let ball = balls[i];
@@ -74,24 +75,25 @@
                 balls.splice(i, 1);
                 var x = document.getElementById("ball_hit");
                 x.play();
-                count+=1;
+                count+=1;//cộng điểm cho mỗi lần bắn trúng
               }
             }
 
         });
-
+//tạo function để tạo animation 
         function animate() {
             requestAnimationFrame(animate);
             c.clearRect(0, 0, canvas.width, canvas.height);
             balls.forEach(ball => ball.move());
+            //viết chữ để đếm kết quả
             c.font = "20px Arial";
             c.fillStyle = 'black';
             c.textAlign = 'center';
-            c.fillText("Click để bắn bóng  " + count, canvas.width * 0.5, 20);
+            c.fillText("Số quả bóng đã bắn trúng  " + count, canvas.width * 0.5, 20);
         }
-        animate();
+        animate();//tạo animation 
 
-
+//2 functioon để chọn số ngẫu nhiên và chọn màu ngẫu nhiên
         function rgb() {
             color = 'rgb(';
             for (var i = 0; i < 3; i++) {

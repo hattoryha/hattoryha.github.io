@@ -15,25 +15,30 @@
     var ctx = c.getContext("2d");
     canvas.width = innerWidth;
     canvas.height = innerHeight;
+    //hứng sự kiện thay đổi màn hình
     addEventListener("resize", function () {
       canvas.width = innerWidth;
       canvas.height = innerHeight;
       init();
     });
     var N = 10;
+    //tạo function khởi tạo toàn bộ 
     function init(){
+      //tạo function vẽ hình vuông
       function drawSquare(width,angle,color) {
         ctx.save();
-        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.translate(canvas.width / 2, canvas.height / 2);//chuyển toạn độ về tâm  canvas
         ctx.rotate(angle * Math.PI / 180);
         ctx.fillStyle = color;
-        ctx.fillRect(-width/2, -width/2, width,width);
+        ctx.fillRect(-width/2, -width/2, width,width);//để tâm hình vuông trùng tâm canvas
         ctx.restore();
       }
-      drawSquare(400,0,"Blue");
-      var width = 400;
+      drawSquare(400,0,"Blue");//vẽ hình vuông
+      var width = 400;// cho cạnh hình vuông ban đầu là 400
+      //dùng hàm for để vẽ ra nhiều hình vuông lồng nhau
       for (var i = 1; i < N; i++) {
-        width = width/Math.sqrt(2);
+        width = width/Math.sqrt(2);//kích thước cạnh hình vuông nội tiếp bằng hình kích thước cạnh hình vuông bao ngay ngoài chia cho căn bậc 2 cua 2
+        //dùng hàm if để xác định gocs xoay và màu hình vuông
         if (i % 2 == 0){
           angle = 0;
           color = "Blue";

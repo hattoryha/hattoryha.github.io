@@ -31,7 +31,7 @@
         canvas.width = innerWidth;
         canvas.height = innerHeight;
 
-
+//making a ball class
         class Ball {
             constructor(radius, color, x, y) {
                 this.radius = radius;
@@ -39,7 +39,7 @@
                 this.x = x;
                 this.y = y;
             }
-
+//making the function to draw the balls in class of Ball
             draw() {
                 c.beginPath();
                 c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
@@ -47,34 +47,38 @@
                 c.fill();
                 c.closePath();
             }
+//making the function to move the balls in class of Ball
             move() {
-                this.y -= 10; //Chuyển động tịnh tiến đều từ trái sang phải
+                this.y -= 10; //Chuyển động tịnh tiến đều từ dưới lên trên
                 if (this.y - this.radius <= 0) {
-                    //nếu vượt quá cạnh phải màn hình thì quay lại từ cạnh bên trái
+                    //nếu vượt quá cạnh trên màn hình thì quay lại từ dưới cùng màn hình
                     this.y = canvas.height - this.radius;
-                    this.x=randomIntFromRange(0,canvas.width)
+                    this.x = randomIntFromRange(0,canvas.width)  // tạo vị tris bất kỳ khi quả bóng xuất hiện phía dưới cùng màn hình
                 }
                 this.draw();
             }
         }
-        let radius = 30;
-        balls = [];
-        var count = 0;
+        let radius = 30; // gán bán kính cho bóng
+        balls = [];//tạo mảng để lưu bóng, ban đầu mảng rỗng
 
+// sau mỗi lần click thì đẩy 1 phần tử ball vào trong mảng
         addEventListener('click', (event) => {
             var x = randomIntFromRange(0, canvas.width);
             let ball = new Ball(radius, rgb(), x, canvas.height);
-            balls.push(ball);
+            balls.push(ball); 
         });
-
+// tạo animation cho toàn bộ mảng
         function animate() {
             requestAnimationFrame(animate);
             c.clearRect(0, 0, canvas.width, canvas.height);
             balls.forEach(ball => ball.move());
         }
+// tạo function để  tạo animation cho toàn bộ mảng
+//tạo animation cho toàn bộ mảng
         animate();
 
-
+// bên dưới là 2 function hỗ trợ, 1 function để chọn màu ngẫu nhiên (dùng để chọn màu cho bóng),
+// 1 function để chọn số ngẫu nhiên (dùng để chọn vị trí xuất hiện bất kỳ cho bóng)
         function rgb() {
             color = 'rgb(';
             for (var i = 0; i < 3; i++) {

@@ -21,13 +21,16 @@
       init();
     });
     var N = 7;
+    //tạo hàm khởi tạo
     function init(){
-      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.translate(canvas.width / 2, canvas.height / 2); //chuyển toạn độ về tâm canvas
+      //tạo function vẽ hình vuông
       function drawSquare(width,angle,color) {
         ctx.rotate(angle * Math.PI / 180);
         ctx.fillStyle = color;
-        ctx.fillRect(-width/2, -width/2, width,width);
+        ctx.fillRect(-width/2, -width/2, width,width);//để tâm hình vuông trùng tâm canvas
       }
+      //tạo funcion vẽ hình tròn
       function drawCircle(radius, color) {
         ctx.beginPath();
         ctx.arc(0, 0, radius, 0, 2 * Math.PI);
@@ -35,8 +38,9 @@
         ctx.fill();
         ctx.closePath();        
       }
-      var radius = 600;
-      drawCircle(radius,rgb());
+      var radius = 600;//gán bán kính ban đầu cho hình tròn ngoài cùng là 600
+      drawCircle(radius,rgb());//vẽ hình tròn ngoài cùng
+      //dùng hàm for để vẽ các hình vuông và hình tròn lồng nhau
       for (var i = 1; i < N; i++) {
         if (i % 2 == 0) {
           radius = width / 2;
@@ -50,6 +54,7 @@
 
     }
     init();
+    //hàm chọn màu ngẫu nhiên
     function rgb() {
       color = 'rgb(';
       for (var i = 0; i < 3; i++) {
