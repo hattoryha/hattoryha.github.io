@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #canvas {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="ball_hit">
+        <source src="ball.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("canvas");
+        const c = canvas.getContext('2d');
+
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+
+
+        class Ball {
+            constructor(radius, color, x, y) {
+                this.radius = radius;
+                this.color = color;
+                this.x = x;
+                this.y = y;
+            }
+
+            draw() {
+                c.beginPath();
+                c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                c.fillStyle = this.color;
+                c.fill();
+                c.closePath();
+            }
+            move() {
+                this.y -= 10; //Chuyển động tịnh tiến đều từ trái sang phải
+                if (this.y - this.radius <= 0) {
+                    //nếu vượt quá cạnh phải màn hình thì quay lại từ cạnh bên trái
+                    this.y = canvas.height - this.radius;
+                    this.x=randomIntFromRange(0,canvas.width)
+                }
+                this.draw();
+            }
+        }
+        let radius = 30;
+        balls = [];
+        var count = 0;
+
+        addEventListener('click', (event) => {
+            var x = randomIntFromRange(0, canvas.width);
+            let ball = new Ball(radius, rgb(), x, canvas.height);
+            balls.push(ball);
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            c.clearRect(0, 0, canvas.width, canvas.height);
+            balls.forEach(ball => ball.move());
+        }
+        animate();
+
+
+        function rgb() {
+            color = 'rgb(';
+            for (var i = 0; i < 3; i++) {
+                color += Math.floor(Math.random() * 255) + ',';
+            }
+            return color.replace(/\,$/, ')');
+        }
+        function randomIntFromRange(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+    </script>
+</body>
+
+</html>
