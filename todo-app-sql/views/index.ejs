@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <form action="/new-todo" method="POST">
+        <input type="text" name="img" placeholder="anh">
+        <input type="text" name="name" placeholder="ten">
+        <input type="text" name="email" placeholder="email">
+        <button type="submit">add_card</button>
+        </form>
+        <form action="/xoa-the" method="POST">
+        <input type="text" name="name" placeholder="nhap ten can xoa">
+        <button type="submit">delete_card</button>
+        </form>
+        <form action="/edit_card" method="POST">
+            <input type="text" name="old_name" placeholder="ten the muon edit">
+            <input type="text" name="img" placeholder="anh">
+            <input type="text" name="name" placeholder="ten">
+            <input type="text" name="email" placeholder="email">
+            <button type="submit">update_card</button>
+        <div class="banner">
+            <div class="banner_left">
+                <span class="left_icon" ><i class="fa fa-rocket" id="rocket_icon" aria-hidden="true"></i></span>
+                <span class="text_Teammember">Team Members</span>
+            </div>
+            <span class="banner_right">
+                <button class="btn_all" style="border-radius:100px; background-color:aqua;">
+                    <span class="MT">All</span>
+                </button>
+                    <button class="btn_MT"><span class="text_MT">My Team</span></button>
+            </span>
+        </div>
+        <div class="card_list">
+            <% for(let i = 0; i < elements.length; i++) { %>
+            <div class="card">
+                <div class="card_icon">
+                    <span><i class="fa fa-heart" aria-hidden="true"></i></span>
+                </div>
+                <div class="card_thumbnail">
+                    <img src=<%= elements[i].img %>
+                        alt="">
+                </div>
+                <div class="card_infor">
+                    <span class="name"><%= elements[i].name %></span>
+                    <span class="email"><%= elements[i].email %></span>
+                </div>
+                <div class="card_btn">
+                    <button class="btn_icon">
+                        <span><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+                        <span class="btn_name">Assign</span>
+                    </button>
+                    <button class="btn_icon">
+                        <span> <i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="btn_name">View</span>
+                    </button>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

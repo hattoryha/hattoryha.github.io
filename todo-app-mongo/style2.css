@@ -1,0 +1,160 @@
+*,*::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Roboto";
+    background-color: aliceblue;
+    height: 100vh;
+
+}
+.card_list{
+
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+.wrap {
+    background-color: #F2F2F2;
+    width: 80%;
+    margin: auto;
+}
+img {
+    display: block;
+    max-height: 100%;
+    width: auto;
+    margin: auto;
+    border-radius: 100%;
+}
+span {
+    display: inline-block;
+}
+.card {
+    background-color: white;
+    width: 304px;
+    height: 360px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+.card_icon span{
+    color:#BFC5B1;
+}
+.card_icon span:hover{
+    color: #fa5f7d;
+}
+.card_icon {
+display: flex;
+/* flex-direction: row-reverse; */
+justify-content: flex-end;
+margin-bottom: 10px;
+}
+.card_thumbnail {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card_infor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.name{
+    font-size: 18px;
+    color: #1b2437;
+    margin:  16px 0 20px 30px;
+    font-weight: 500;
+}
+.email {
+    font-size: 14px;
+    color: #98a0a6;
+    font-weight: 500;
+}
+.card_btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+}
+.card_btn button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 48%;
+    background-color: white;
+    border: none;
+    padding: 12px 0;
+    border-radius: 100px;
+    transition: all 1s;
+}
+.card_btn button:hover {
+    background-color: #507bfc;
+    color: #fff;
+}
+.btn_icon {
+    color: #BFC5B1;
+    font-size: 18px;
+    margin-right: 10px;
+margin-top: 35px;
+}
+.btn_name {
+color:#98a0a6;
+}
+.banner {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 10px;
+    align-items: center;
+width: 96%;
+}
+.banner_right{
+    border-radius: 100px;
+    background-color: white;
+    border: 1px solid #DEE1E6;
+    width: 252px;
+    height: 40px;
+}
+.btn_all {
+    height: 100%;
+    border: none;
+    width: 126px;
+    height: 40px;
+}
+.btn_MT {
+    border-radius: 100px;
+    background-color: white;
+    border: none;
+}
+.text_MT{
+font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 14px;
+/* identical to box height */
+margin-left: 30px;
+color: #94969A;
+}
+.left_icon{
+    background: #507BFC;
+box-shadow: 0px 10px 20px rgba(80, 123, 252, 0.5);
+border-radius: 3px;
+width: 40px;
+height: 40px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+#rocket_icon{
+    color: #DADADA; width:16px; height:16px;
+}
+.banner_left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
