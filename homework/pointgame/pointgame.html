@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        #canvas {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="ball_hit">
+        <source src="ball.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div id="start_game" style="width: 100vw; height: 100vh">
+        <button id="btn_startgame" class="button">Choi game</button>
+    </div>
+    <div id="game" style="display: none;"><canvas id="canvas"></canvas></div>
+    <div id="end_game" style="display: none;"></div>
+<script>
+    let btnStartgame = document.getElementById("btn_startgame");
+    let game = document.getElementById("game");
+    let endGame = document.getElementById("end_game");
+    let startGame = document.getElementById("start_game");
+    btnStartgame.addEventListener("click", function() {
+startGame.style.display = "none"
+game.style.display = "block"
+    })
+</script>
+    <script>
+        const canvas = document.getElementById("canvas");
+        const c = canvas.getContext('2d');
+
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+
+
+        class Ball {
+            constructor(radius, color, x, y) {
+                this.radius = radius;
+                this.color = color;
+                this.x = x;
+                this.y = y;
+                this.Score = 0;
+                this.dx = 0;
+                this.dy = 0;
+            }
+
+            draw() {
+                c.beginPath();
+                c.shadowColor = "black";
+                c.shadowBlur = 6;
+                c.shadowOffsetX = 6;
+                c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                c.fillStyle = this.color;
+                c.fill();
+                c.closePath();
+            }
+            drawBoss() {
+                c.beginPath();
+                c.shadowColor = "green";
+                c.shadowBlur = 6;
+                //c.shadowOffsetX = 20;
+                c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                c.fillStyle = this.color;
+                c.fill();
+                c.closePath();
+            }
+            drawScore() {
+                c.font = "80px Arial";
+                c.fillStyle = 'black';
+                c.textAlign = 'center';
+                c.fillText(this.Score, 60, canvas.height - 30);
+            }
+
+            move() {
+                if ((this.x > canvas.width - this.radius) || (this.x + this.dx <= this.radius)) {
+                  this.dx = - this.dx;
+                }
+                if ((this.y > canvas.height - this.radius) || (this.y + this.dy <= this.radius)) {
+                    this.dy = - this.dy;
+                  }
+                this.x = this.x + this.dx;
+                this.y = this.y + this.dy;
+                this.draw();
+              }
+        }
+        addEventListener('keydown', function (event) {
+            if (event.keyCode == 37) {
+              console.log('Left was pressed');
+              ball_boss.dx = -4;
+              ball_boss.dy = 0;
+            }
+            else if (event.keyCode == 39) {
+              console.log('Right was pressed');
+              ball_boss.dx = 4;
+              ball_boss.dy = 0;
+            }
+            else if (event.keyCode == 40) {
+                console.log('Down was pressed');
+                ball_boss.dy = 4;
+                ball_boss.dx = 0;
+              }
+            else if (event.keyCode == 38) {
+            console.log('Down was pressed');
+            ball_boss.dy = -4;
+            ball_boss.dx = 0;
+            }
+          });
+        function randomIntFromRange(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        let radius_point = 30;
+        let radius_boss = 60;
+        var ball_points = [];
+        var number_of_point = 3;
+        function initial_state() {
+            c.clearRect(0, 0, canvas.width, canvas.height);
+            ball_boss.x = 80;
+            ball_boss.y = 80;
+            ball_boss.radius = radius_boss;
+            ball_boss.dx = 0;
+            ball_boss.dy = 0;
+            ball_boss.Score = 0;
+            ball_boss.color = "yellow";
+            ball_boss.drawBoss();
+            ball_boss.drawScore();
+            for (i = 0; i < number_of_point; i++) {
+                let ball_X = randomIntFromRange(radius_point, canvas.width - radius_point);
+                let ball_Y = randomIntFromRange(radius_point, canvas.height - radius_point);
+                let ball_point = new Ball(radius_point, "red", ball_X, ball_Y);
+                ball_point.draw();
+                ball_points.push(ball_point);
+            }
+
+        }
+        function init() {
+            for (i = 0; i < ball_points.length; i++) {
+                if (
+                    Math.pow((ball_boss.x - ball_points[i].x), 2) +
+                    Math.pow((ball_boss.y - ball_points[i].y), 2) < Math.pow(radius_boss+radius_point, 2)) {
+                    ball_points.splice(i, 1);
+                    var x = document.getElementById("ball_hit");
+                    x.play();
+                    ball_boss.Score+=1;//cộng điểm cho mỗi lần bắn trúng
+                    if (ball_points.length == 0) {
+                        game.style.display = "none";
+                        initial_state();
+                        startGame.style.display = "block";
+                    }
+                  }
+                else {
+                    ball_points[i].draw();                    
+                }
+
+            }
+            ball_boss.drawScore();
+            ball_boss.move();
+        }
+        console.log(ball_points);
+        //ball_point.draw();
+        let ball_boss = new Ball(radius_boss, "yellow", 80, 80);
+        initial_state();
+        function animate() {
+            requestAnimationFrame(animate);
+            c.clearRect(0, 0, canvas.width, canvas.height);
+            init();
+          }
+        
+          animate();
+    </script>
+</body>
+
+</html>
