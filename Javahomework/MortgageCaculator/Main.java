@@ -17,9 +17,8 @@ public class Main {
         System.out.printf("Nhap thoi gian vay (tinh bang thang): ");
         int monthNumber = input.nextInt();
         input.nextLine();
-        System.out.printf("So tien phai tra la: ");
         double M = (double) loan * r * Math.pow ((1 + r), monthNumber) / (Math.pow ((1 + r), monthNumber) - 1);
-        System.out.println("So tien phai tra  sau " + monthNumber + " thang la : " +M);
+        System.out.println("So tien phai tra  trong " + monthNumber + " thang la : " + M);
     }
 }
 
