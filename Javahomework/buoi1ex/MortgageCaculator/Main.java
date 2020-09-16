@@ -18,7 +18,7 @@ public class Main {
         int monthNumber = input.nextInt();
         input.nextLine();
         double M = (double) loan * r * Math.pow ((1 + r), monthNumber) / (Math.pow ((1 + r), monthNumber) - 1);
-        System.out.println("So tien phai tra  trong " + monthNumber + " thang la : " + M);
+        System.out.println("So tien phai tra  trong " + monthNumber + " thang la $: " + M);
     }
 }
 
